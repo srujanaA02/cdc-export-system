@@ -16,7 +16,7 @@ A containerized Change Data Capture (CDC) data export system using Node.js, Expr
 ### Step 1 — Clone the repo
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/srujanaA02/cdc-export-system
 cd cdc-export-system
 ```
 
