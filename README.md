@@ -40,7 +40,7 @@ app-1 | {"level":"info","event":"server_started","port":"8080"}
 ### Step 4 — Confirm it is running (open a second terminal)
 
 ```bash
-curl http://localhost:8080/health
+curl http://localhost:8081/health
 ```
 
 Expected:
@@ -70,7 +70,7 @@ docker-compose exec db psql -U user -d mydatabase -c "SELECT MIN(updated_at), MA
 ### Full Export
 
 ```bash
-curl -X POST http://localhost:8080/exports/full \
+curl -X POST http://localhost:8081/exports/full \
   -H "X-Consumer-ID: consumer-1"
 ```
 
@@ -82,7 +82,7 @@ ls output/
 ### Check Watermark
 
 ```bash
-curl http://localhost:8080/exports/watermark \
+curl http://localhost:8081/exports/watermark \
   -H "X-Consumer-ID: consumer-1"
 ```
 
@@ -96,7 +96,7 @@ docker-compose exec db psql -U user -d mydatabase \
 
 Then run incremental export:
 ```bash
-curl -X POST http://localhost:8080/exports/incremental \
+curl -X POST http://localhost:8081/exports/incremental \
   -H "X-Consumer-ID: consumer-1"
 ```
 
@@ -124,7 +124,7 @@ docker-compose exec db psql -U user -d mydatabase \
 
 Then run delta export:
 ```bash
-curl -X POST http://localhost:8080/exports/delta \
+curl -X POST http://localhost:8081/exports/delta \
   -H "X-Consumer-ID: consumer-3"
 ```
 
@@ -137,7 +137,7 @@ head -5 output/delta_consumer-3_*.csv
 ### 404 for unknown consumer
 
 ```bash
-curl http://localhost:8080/exports/watermark \
+curl http://localhost:8081/exports/watermark \
   -H "X-Consumer-ID: brand-new-consumer"
 ```
 
@@ -176,7 +176,7 @@ docker-compose down
 | Variable | Description | Value |
 |----------|-------------|-------|
 | `DATABASE_URL` | PostgreSQL connection string | `postgresql://user:password@db:5432/mydatabase` |
-| `PORT` | App port | `8080` |
+| `PORT` | App port | `8081` |
 | `NODE_ENV` | Environment | `development` |
 
 ---
